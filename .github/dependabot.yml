@@ -1,0 +1,27 @@
+# Dependabot — dependency hygiene + SCA. Mirrors the Felix / Call-Log-Web setup.
+#
+# Version updates (this file): weekly, grouped minor/patch, with MAJOR bumps
+# IGNORED — majors are handled deliberately, not via auto-PR (an untamed rollout
+# floods PRs, and majors have broken the build on Felix before). Security
+# updates (vulnerability-driven) are enabled at the REPO level via Dependabot
+# alerts + automated security fixes, and are independent of this file.
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      app:
+        update-types:
+          - "minor"
+          - "patch"
+    commit-message:
+      prefix: "chore(deps)"
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
